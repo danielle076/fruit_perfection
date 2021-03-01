@@ -61,9 +61,11 @@ function App() {
                                 id="form-message"
                                 placeholder="Typ hier jouw bericht"
                                 name="message"
+                                className={messageValue.length > 20 ? 'input-error' : ''}
                                 value={messageValue}
                                 onChange={(e) => setMessageValue(e.target.value)}
                             />
+                            {messageValue.length > 20 && <p className="error-message">Dit bericht is te lang!</p>}
                         </label>
                         <label htmlFor="form-terms-and-conditions">
                             <input
