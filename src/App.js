@@ -3,10 +3,13 @@ import Product from './Product';
 import citroenen from './assets/citroenen.jpeg';
 import limoenen from './assets/limoenen.png';
 import ijsblokjes from './assets/ijsblokjes.jpg';
-import { ReactComponent as ShoppingCart } from './assets/winkelmandje.svg';
+import {ReactComponent as ShoppingCart} from './assets/winkelmandje.svg';
 import './App.css';
 
 function App() {
+    const [messageValue, setMessageValue] = React.useState('');
+    const [checkedTerms, toggleCheckedTerms] = React.useState(false);
+
     return (
         <>
             <nav>
@@ -21,7 +24,7 @@ function App() {
                         <a href="/">Blog</a>
                     </li>
                 </ul>
-                <ShoppingCart className="shopping-cart-icon" />
+                <ShoppingCart className="shopping-cart-icon"/>
             </nav>
             <header><h1>Fruit Perfection</h1>
                 <button type="button"
@@ -46,6 +49,39 @@ function App() {
                     description="Een ijsblokje of ijsklontje is bevroren water in de vorm van een klein blokje. Het wordt gemaakt in een diepvriezer door water in een plastic vorm te laten bevriezen."
                 />
             </main>
+            <footer>
+                <div className="form-container">
+                    <h2>Contactformulier</h2>
+
+                    <form>
+                        <label htmlFor="form-message">
+                            Bericht:
+                            <input
+                                type="text"
+                                id="form-message"
+                                placeholder="Typ hier jouw bericht"
+                                name="message"
+                                value={messageValue}
+                                onChange={(e) => setMessageValue(e.target.value)}
+                            />
+                        </label>
+                        <label htmlFor="form-terms-and-conditions">
+                            <input
+                                type="checkbox"
+                                id="form-terms-and-conditions"
+                                name="terms-and-conditions"
+                                checked={checkedTerms}
+                                onChange={() => toggleCheckedTerms(!checkedTerms)}
+                            />
+                            Ik ga akkoord met de algemene voorwaarden
+                        </label>
+                    </form>
+
+                    <button type="submit">
+                        Verstuur
+                    </button>
+                </div>
+            </footer>
         </>
     );
 }
